@@ -20,22 +20,25 @@ export default class Sign_Up extends React.Component {
   }
 
 Regist_Data(){
-  let username = this.state
-  let password = this.state
+  let username = this.state.username
+  let password = this.state.password
   AsyncStorage.setItem('username',username)
   AsyncStorage.setItem('password',password)
   this.setState({username: username, Persisted_Name: username, password: password, Persisted_Passwd})
 }
 
 Check_Data(){
-  AsyncStorage.getItem('Username').then((username) => {
+  AsyncStorage.getItem('username').then((username) => {
     this.setState({username: username, Persisted_Name: username})
   })
 
   AsyncStorage.getItem('password').then((password) => {
     this.setState({password: password, Persisted_Passwd: password})
   })
+}
 
+Component_Will_Mount(){
+  this.Check_Data
 }
 
 Chear_Data(){
@@ -51,6 +54,7 @@ Chear_Data(){
       <TextInput
       value={this.state.username}
       onChangeText = {(text) => this.setState({username: text})}
+      returnKeyType="done"
       style={styles.input} placeholder="Username"
       />
 
@@ -58,6 +62,7 @@ Chear_Data(){
       <TextInput
       value={this.state.password}
       onChangeText = {(text) => this.setState({password: text})}
+      returnKeyType="done"
       style={styles.input} placeholder="Password"
       secureTextEntry={true}
       />
@@ -65,6 +70,7 @@ Chear_Data(){
       <TextInput
       value={this.state.password_confirmation}
       onChangeText = {(text) => this.setState({password_confirmation: text})}
+      returnKeyType="done"
       style={styles.confirm_input} placeholder="Confirm Password"
       secureTextEntry={true}
       />
