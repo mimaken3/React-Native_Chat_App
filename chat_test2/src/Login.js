@@ -5,6 +5,9 @@ import {
 import {StackNavigator,} from 'react-navigation';
 
 export default class Login extends React.Component {
+  static navigationOptions = {
+    title: 'ログイン',
+  }
 
   constructor(){
     super()
@@ -13,8 +16,17 @@ export default class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <TextInput style={styles.inputStyle} placeholder="Username" />
-      <TextInput style={styles.inputStyle} placeholder="Password" />
+      <TextInput
+      style={styles.inputStyle}
+      keyboardType="email-address"
+      returnKeyType="done"
+      placeholder="Username" />
+
+      <TextInput
+      style={styles.inputStyle}
+      keyboardType="email-address"
+      returnKeyType="done"
+      placeholder="Password" />
 
       <TouchableOpacity>
       <Text style={styles.btnText}>LOGIN</Text>
