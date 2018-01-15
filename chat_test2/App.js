@@ -5,7 +5,6 @@ import {
 import {StackNavigator,} from 'react-navigation';
 import Login from './src/Login'
 import Sign_Up from './src/Sign_Up'
-import Regist from './src/Regist'
 
 const Navigation = StackNavigator({
   Login:{
@@ -13,9 +12,6 @@ const Navigation = StackNavigator({
   },
   Sign_Up:{
     screen:Sign_Up,
-  },
-  Regist:{
-    screen:Regist,
   },
 })
 
