@@ -18,14 +18,14 @@ export default class Login extends React.Component {
       <View style={styles.container}>
       <TextInput
       style={styles.inputStyle}
-      keyboardType="email-address"
+      returnKeyType="default"
       returnKeyType="done"
       placeholder="Username" />
 
       <TextInput
       style={styles.inputStyle}
-      keyboardType="email-address"
       returnKeyType="done"
+      secureTextEntry={true}
       placeholder="Password" />
 
       <TouchableOpacity>
