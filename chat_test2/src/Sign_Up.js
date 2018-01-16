@@ -37,7 +37,7 @@ Check_Data(){
   })
 }
 
-Component_Will_Mount(){
+componentWillMount(){
   this.Check_Data
 }
 
@@ -61,8 +61,8 @@ Chear_Data(){
 
       <TextInput
       value={this.state.password}
-      onChangeText = {(text) => this.setState({password: text})}
       returnKeyType="done"
+      onChangeText = {(text) => this.setState({password: text})}
       style={styles.input} placeholder="Password"
       secureTextEntry={true}
       />
@@ -76,7 +76,8 @@ Chear_Data(){
       />
 
       <TouchableOpacity
-      onPress={this.Regist_Data}>
+      onPress={()=>this.props.navigation.navigate("Chat")}>
+      {/* onPress={this.Regist_Data}> */}
       <Text style={styles.regist_input}>Regist</Text>
       </TouchableOpacity>
 

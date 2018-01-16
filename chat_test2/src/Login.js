@@ -28,8 +28,9 @@ export default class Login extends React.Component {
       secureTextEntry={true}
       placeholder="Password" />
 
-      <TouchableOpacity>
-      <Text style={styles.btnText}>LOGIN</Text>
+      <TouchableOpacity
+      onPress={()=>this.props.navigation.navigate("Chat")}>
+      <Text style={styles.btnText}>Login</Text>
       </TouchableOpacity>
 
       <Button style={styles.btnTextSignUp} title="Not a member ? SignUp Now"
