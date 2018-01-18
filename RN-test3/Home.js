@@ -5,7 +5,7 @@ AppRegistry, TextInput,StyleSheet, Text, View, TouchableHighlight, AlertIOS, Tou
 
 import { StackNavigator } from 'react-navigation';
 
-export default class Home extends Component {
+export default class Home extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -31,23 +31,35 @@ export default class Home extends Component {
     } else if(this.state.title && !this.state.comment){
       AlertIOS.alert('コメントを入力して下さい')
     } else if(this.state.comment && this.state.title){
-      // AlertIOS.alert(this.state.title + ' + ' + this.state.comment)
       const data = {
         title: this.state.title,
         comment: this.state.comment
       }
+
+      // AlertIOS.alert(data.title) // ok
+      // AlertIOS.alert(data.comment) // ok
+      // AlertIOS.alert('dataが初期化された') // ok
+
       arrayData.push(data);
       AsyncStorage.getItem('database_form').then((value) => {
         if(value !== null){
           const d = JSON.parse(value);
+      // AlertIOS.alert(JSON.parse(value)) // bad
+      // AlertIOS.alert(d) // bad
           d.push(data)
+
+      // AlertIOS.alert('dにdataがpushされた') // ok
+      // AlertIOS.alert(d) // bad
+
           AsyncStorage.setItem('database_form',JSON.stringify(d)).then(() => {
-            this.props.navigator.push({
-              component: List,
-              title: 'List of Things'
-            })
+            AlertIOS.alert('今からnullじゃないListに行きまーす！') // ok
+            this.props.navigation.navigate("List")
+            // this.props.navigator.push({
+            //   title: 'List of Things',
+            //   component: List,
+            // })
           })
-        }else {
+        } else {
           AsyncStorage.setItem('database_form',JSON.stringify(arrayData)).then(() =>              {
             this.props.navigator.push({
               component: List,
@@ -82,13 +94,13 @@ export default class Home extends Component {
       onChangeText={(comment) => this.changeComment(comment)}
       />
 
-      <TouchableOpacity
+      <TouchableHighlight
       style={styles.button}
       onPress={() =>
        this.buttonPressed()
       }>
       <Text style={styles.textButton}>Send</Text>
-      </TouchableOpacity>
+      </TouchableHighlight>
 
       </View>
       </View>
