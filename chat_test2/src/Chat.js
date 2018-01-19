@@ -1,14 +1,6 @@
 import React from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  StatusBar,
-  FlatList,
-  Image,
+  StyleSheet,Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, StatusBar, FlatList, Image,
 } from 'react-native';
 
 import ReversedFlatList from 'react-native-reversed-flat-list';
@@ -16,11 +8,10 @@ import ReversedFlatList from 'react-native-reversed-flat-list';
 import {send, subscribe} from 'react-native-training-chat-server';
 import Header from './Header';
 
-const NAME = '@KarenAnneCarpenter';
-const CHANNEL = 'Random';
-const AVATAR =
-  'https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_400x400.jpg';
-
+const Name = '@Test_Name';
+const Channel = 'Test_Room'
+const Avatar =
+  'https://pbs.twimg.com/profile_images/378800000220029324/fe66faeca20115da8566e51d83447ead_400x400.jpeg';
 export default class Chat extends React.Component {
   state = {
     typing: '',
@@ -28,7 +19,7 @@ export default class Chat extends React.Component {
   };
 
   componentWillMount() {
-    subscribe(CHANNEL, messages => {
+    subscribe(Channel, messages => {
       this.setState({messages});
     });
   }
@@ -39,9 +30,9 @@ export default class Chat extends React.Component {
 
     // send message to our channel, with sender name
     await send({
-      channel: CHANNEL,
-      sender: NAME,
-      avatar: AVATAR,
+      channel: Channel,
+      sender: Name,
+      avatar: Avatar,
       message,
     });
 
@@ -66,25 +57,27 @@ export default class Chat extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title={CHANNEL} />
-        <ReversedFlatList
-          data={this.state.messages}
-          renderItem={this.renderItem}
-        />
-        <KeyboardAvoidingView behavior="padding">
-          <View style={styles.footer}>
-            <TextInput
-              value={this.state.typing}
-              style={styles.input}
-              underlineColorAndroid="transparent"
-              placeholder="Type something nice"
-              onChangeText={text => this.setState({typing: text})}
-            />
-            <TouchableOpacity onPress={this.sendMessage}>
-              <Text style={styles.send}>Send</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
+      <Header title={Channel} />
+      <ReversedFlatList
+      data={this.state.messages}
+      renderItem={this.renderItem}
+      />
+      <KeyboardAvoidingView behavior="padding">
+      <View style={styles.footer}>
+      <TextInput
+      returnKeyType="done"
+      value={this.state.typing}
+      style={styles.input}
+      underlineColorAndroid="transparent"
+      placeholder="メッセージを入力して下さい"
+      onChangeText={text => this.setState({typing: text})}
+      />
+      <TouchableOpacity onPress={this.sendMessage}>
+      <Text style={styles.send}>Send</Text>
+      </TouchableOpacity>
+      </View>
+
+      </KeyboardAvoidingView>
       </View>
     );
   }
